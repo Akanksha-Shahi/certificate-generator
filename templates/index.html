@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        GeeksforGeeks Certificate Generator
+    </header>
+
+    <div class="container">
+        <h2>Upload Excel & Generate Certificates</h2>
+        <form action="/generate" method="POST" enctype="multipart/form-data">
+            <label for="excel">Upload Excel File:</label>
+            <input type="file" id="excel" name="excel" accept=".xlsx" required>
+            <button type="submit">Generate Certificates</button>
+        </form>
+    </div>
+
+    <footer>
+        © 2025 GeeksforGeeks Certificate Generator
+    </footer>
+</body>
+</html>
