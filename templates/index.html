@@ -21,6 +21,15 @@
       <br><br>
       <button type="submit" class="gfg-btn">Generate Certificates</button>
     </form>
+    <form action="/preview" method="post" enctype="multipart/form-data" target="_blank">
+  <input type="file" name="excel" id="excel" required>
+  <button type="submit" class="gfg-btn">Preview Certificate</button>
+</form>
+
+<form action="/generate" method="post" enctype="multipart/form-data">
+  <input type="file" name="excel" id="excel" required>
+  <button type="submit" class="gfg-btn">Generate Certificates</button>
+</form>
   </main>
 
   <!-- Footer -->
