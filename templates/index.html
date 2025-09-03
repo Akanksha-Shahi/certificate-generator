@@ -13,34 +13,38 @@
     <h2>Certificate Generator</h2>
   </header>
 
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Header -->
+  <header class="gfg-header">
+    <h1>GeeksforGeeks - VIT Bhopal Student Chapter</h1>
+    <h2>Certificate Generator</h2>
+  </header>
+
   <!-- Upload Section -->
   <main class="container">
     <form action="/generate" method="post" enctype="multipart/form-data">
-  <label for="excel"><b>Upload Excel File:</b></label><br>
-  <input type="file" name="excel" id="excel" required>
-  <br><br>
-
-  <label for="previewName"><b>Preview Name:</b></label><br>
-  <input type="text" id="previewName" placeholder="Enter a name to preview" oninput="updatePreview()">
-  <br><br>
-
-  <div id="preview-container">
-    <img id="certificate-preview" src="{{ url_for('static', filename='template.png') }}" alt="Certificate Preview">
-    <div id="preview-text">Your Name</div>
-  </div>
-  <br>
-
-  <button type="submit" class="gfg-btn">Generate Certificates</button>
-</form>
-
-<script>
-function updatePreview() {
-  const name = document.getElementById("previewName").value;
-  document.getElementById("preview-text").innerText = name || "Your Name";
-}
-</script>
-
+      <label for="excel"><b>Upload Excel File:</b></label><br>
+      <input type="file" name="excel" id="excel" required>
+      <br><br>
+      <button type="submit" class="gfg-btn">Generate Certificates</button>
+    </form>
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 GeeksforGeeks VIT Bhopal Student Chapter</p>
+  </footer>
+</body>
+</html>
+
 
   <!-- Footer -->
   <footer>
