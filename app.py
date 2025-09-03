@@ -11,12 +11,15 @@ def index():
 
 @app.route("/generate", methods=["POST"])
 def generate():
-    if "file" not in request.files:
-        return "No file uploaded", 400
-
+    if "excel" not in request.files:
+        return "❌ No file part in request. Keys: " + str(request.files.keys())
+    
     file = request.files["excel"]
+
     if file.filename == "":
-        return "No selected file", 400
+        return "❌ No file selected"
+    
+    return f"✅ File received: {file.filename}"
 
     # Save Excel temporarily in Render's /tmp directory
     temp_excel = os.path.join("/tmp", file.filename)
