@@ -49,6 +49,33 @@ body {
   background-color: #0c7c46;
 }
 
+/* preview */
+#preview-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 20px;
+  max-width: 100%;
+}
+
+#certificate-preview {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#preview-text {
+  position: absolute;
+  top: 60%;   /* adjust based on your certificate template */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Allura", cursive;
+  font-size: 40px;
+  color: black;
+  text-align: center;
+}
+
+
 /* Footer */
 footer {
   margin-top: 50px;
