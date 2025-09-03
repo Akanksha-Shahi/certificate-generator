@@ -9,24 +9,66 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/generate", methods=["POST"])
-def generate():
+# ----------------- PREVIEW CERTIFICATE -----------------
+@app.route("/preview", methods=["POST"])
+def preview():
     if "excel" not in request.files:
-        return "❌ No file part in request. Keys: " + str(request.files.keys())
+        return "❌ No file uploaded for preview"
     
     file = request.files["excel"]
-
     if file.filename == "":
         return "❌ No file selected"
     
-    return f"✅ File received: {file.filename}"
+    # Save temporarily
+    temp_excel = os.path.join("/tmp", file.filename)
+    file.save(temp_excel)
 
-    # Save Excel temporarily in Render's /tmp directory
+    # Read Excel
+    df = pd.read_excel(temp_excel)
+
+    if "Name" not in df.columns:
+        return "❌ Excel must have a 'Name' column"
+
+    # Take first row for preview
+    name = str(df.iloc[0]["Name"]).strip()
+
+    # Load template
+    img = Image.open("static/template.png")
+    draw = ImageDraw.Draw(img)
+
+    # Load font
+    font_path = os.path.join("fonts", "Allura-Regular.ttf")
+    font = ImageFont.truetype(font_path, 100)
+
+    # Place sample name text
+    draw.text((800, 620), name, font=font, fill="black")
+
+    # Save in memory and send as response
+    img_bytes = io.BytesIO()
+    img.save(img_bytes, format="PNG")
+    img_bytes.seek(0)
+
+    return send_file(img_bytes, mimetype="image/png")
+
+# ----------------- GENERATE ALL CERTIFICATES -----------------
+@app.route("/generate", methods=["POST"])
+def generate():
+    if "excel" not in request.files:
+        return "❌ No file uploaded"
+    
+    file = request.files["excel"]
+    if file.filename == "":
+        return "❌ No file selected"
+    
+    # Save Excel temporarily
     temp_excel = os.path.join("/tmp", file.filename)
     file.save(temp_excel)
 
     # Read Excel file
     df = pd.read_excel(temp_excel)
+
+    if "Name" not in df.columns:
+        return "❌ Excel must have a 'Name' column"
 
     # Prepare in-memory ZIP
     zip_buffer = io.BytesIO()
