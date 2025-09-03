@@ -41,7 +41,7 @@ def preview():
     font = ImageFont.truetype(font_path, 100)
 
     # Place sample name text
-    draw.text((800, 620), name, font=font, fill="black")
+    draw.text((620, 540), name, font=font, fill="black")
 
     # Save in memory and send as response
     img_bytes = io.BytesIO()
@@ -85,7 +85,7 @@ def generate():
             font = ImageFont.truetype(font_path, 100)
 
             # Place text (adjust X,Y for your template)
-            draw.text((800, 620), name, font=font, fill="black")
+            draw.text((620, 540), name, font=font, fill="black")
 
             # Save image to memory
             img_bytes = io.BytesIO()
